@@ -1,0 +1,21 @@
+
+
+
+minsquares(n):
+	
+	dp[0...3] set as 0,1,2,3
+
+
+	for i=4 to n:
+
+		dp[i]= n; //max possible
+		
+		for j=1 to i : 
+
+			s = j^2
+
+			if(s > i)
+				break;
+
+			else
+				dp[i]= min { dp[i] ,1 + dp[i - s] }
