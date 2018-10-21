@@ -27,27 +27,26 @@ int main(int argc, char const *argv[])
 	//m-1 balloons on most expensive day
 	//max(expense = Ai*Bi) -> needs reductions
 
-	lli *product =  (lli*)malloc(sizeof(lli)*n);
-	lli max = INT_MIN;
-	lli index=0;
+	int j=0,t,k;
 
-	for (lli i = 0; i < n; ++i)
-	{
-		product[i]=a[i]*b[i];
-		if(product[i]>max)
-		{
-			max=product[i];
-			index=i;
-		}
-	}
+	while(j<=m)
+    {
+        t=0;
+        for(int i=0;i<n;i++)
+        {
+            if(t<(a[i]*b[i]))
+            {
+                t=a[i]*b[i];
+                k=i;
+            }
+        }
+        
+        a[k]=a[k]-1;
+        j++;
 
-	printf("%lld\n",max-(b[index]*(m-1)));
+    }
 
-	/*for (lli i = 0; i < n; ++i)
-	{
-		printf("%lld\n",product[i]);
-
-	}*/
+    printf("%d\n",t);
 
 
 
