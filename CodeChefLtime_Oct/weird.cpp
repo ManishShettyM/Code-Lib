@@ -1,83 +1,36 @@
-#include <bits/stdc++.h>
-#include <iostream> 
-#include <algorithm>
-
+#include <iostream>
 using namespace std;
+#include <map>
+#include <iterator>
 
-typedef unsigned long long int ull;
-typedef long long int lli;
-
-void p_vec(vector<vector<int>> arr)
-{
-
-    for (int i = 0; i < arr.size(); i++)
-    {
-        for (int j = 0; j < arr[i].size(); j++)
-        {
-            cout << arr[i][j] << " ";
+int main(){
+    int T;
+    cin >> T;
+    for(int i = 0 ; i < T ; i++){
+        map <int , int> sample;
+        int pairs = 0;
+        int N ;
+        cin >> N;
+        int arr[N];
+        for(int j = 0 ; j < N ; j++){
+            cin >> arr[j];
+            sample[arr[j]]++;
         }
-        cout << endl;
-    }
-    cout << endl;
-}
-
-void p_vec(vector<int> arr)
-{
-    for (int i = 0; i < arr.size(); i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-    cout << endl;
-}
-
-int main(int argc, char const *argv[])
-{
-    int t;
-    cin>>t;
-
-    while(t--)
-    {
-        lli n;
-        cin>>n;
-
-        vector<int> a;
-        map<int , int> counter;
-        vector<int> numbers;
-        for (int i = 1; i <=n; ++i)
-        {
-            /* code */
+        map <int , int> :: iterator itr1;
+        map <int , int> :: iterator itr2;
+        for(itr1 = sample.begin() ; itr1 != sample.end() ; ++itr1){
+            int num1 = itr1->second;
+            int num2 = itr1->first;
+            for(itr2 = sample.begin() ; itr2 != sample.end() ; ++itr2){
+                if(itr2->first <= num1){
+                    if(itr2->second >= num2)
+                        pairs++;
+                }               
+                else
+                    break;
+            }           
         }
-
-        for (int i = 0; i < n; ++i)
-        {
-            lli temp;
-            cin>>temp;
-
-            a.push_back(temp);
-
-            counter[temp]++;
-
-        }
-
-        lli ans=0;
-        for (int i = 0; i < n; ++i)//a
-        {
-            for (int j = i+1; j < n; ++j)//b
-            {
-                
-                cout<<a[i]<<":"<<counter[a[i]]<<" "<<a[j]<<":"<<counter[a[j]]<<endl;
-
-                if(counter[a[i]]>=a[j] && counter[a[j]]>=a[i])
-                    ans++;
-            }
-        }
-
-        cout<<ans<<endl;
-
-
-        
+        cout << pairs << endl;
         
     }
-    return 0;
 }

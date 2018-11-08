@@ -61,8 +61,9 @@ int lcs(char * x, char *y)
 
 void main()
 {
-	char x[] = "AGGTAB";
-	char y[] = "GXTXAYB";
+	char x[200];	char y[200];
+	scanf("%s",x);
+	scanf("%s",y);
 
 	printf("%d", lcs(x,y) );
 }
